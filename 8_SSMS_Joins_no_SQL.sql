@@ -97,6 +97,67 @@ where
 	id_produto is null or
 	nome_subcategoria is null
 -----------------------------------------------
+Cross Join
+select
+	marca,
+	nome_subcategoria
+from
+	marcas cross join subcategoria
+-----------------------------------------------
+Multi Join
+select
+	ProductKey,
+	ProductName,
+	DimProduct.ProductSubcategoryKey,
+	ProductSubcategoryName,
+	ProductCategoryName
+from
+	DimProduct
+inner join
+	DimProductSubcategory on
+	DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductSubcategoryKey
+inner join
+	DimProductCategory on
+	DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey
+-----------------------------------------------
+UNION
+select * from DimCustomer
+where
+	Gender = 'F'
+union
+select * from DimCustomer
+where
+	Gender = 'M'
+-----------------------------------------------
+UNION ALL
+select
+	FirstName,
+	BirthDate
+from 
+	DimCustomer
+where
+	Gender = 'F'
+union all -- somas todas as linhas, se for 'union' ele remove as duplicadas
+select
+	FirstName,
+	BirthDate
+from
+	DimCustomer
+where
+	Gender = 'M'
+-----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
