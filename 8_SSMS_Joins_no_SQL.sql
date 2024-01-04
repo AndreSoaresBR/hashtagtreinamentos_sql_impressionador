@@ -137,7 +137,7 @@ from
 	DimCustomer
 where
 	Gender = 'F'
-union all -- somas todas as linhas, se for 'union' ele remove as duplicadas
+union all -- soma todas as linhas, se for 'union' ele remove as duplicadas
 select
 	FirstName,
 	BirthDate
