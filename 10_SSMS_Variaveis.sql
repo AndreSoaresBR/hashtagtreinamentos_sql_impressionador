@@ -49,4 +49,14 @@ select sql_variant_property (cast ('20/06/2021' as datetime), 'basetype')
 select 'O preço do pastel é R$ ' + cast (30.99 as varchar(50))
 select cast ('20/06/2021' as datetime) + 1
 -----------------------------------------------
-
+Formatação
+select format(1000, 'N')
+select format(1000, 'G')
+select format(123456789, '###-##-###')
+select format(cast('21/03/2021' as datetime), 'dd/MM/yyy')
+select format(cast('21/03/2021' as datetime), 'dd/MMM/yyy')
+select format(cast('21/03/2021' as datetime), 'dd/MMMMM/yyy')
+select format(cast('21/03/2021' as datetime), 'dd')
+select format(cast('21/03/2021' as datetime), 'ddd')
+select format(cast('21/03/2021' as datetime), 'dddd')
+-----------------------------------------------
