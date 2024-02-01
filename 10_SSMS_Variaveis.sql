@@ -36,7 +36,7 @@ select 'André ' + 'Soares' as 'Nome'
 Visualizando o tipo
 select sql_variant_property (10, 'basetype')
 select sql_variant_property (49.50, 'basetype')
-select sql_variant_property ('Marcus', 'basetype')
+select sql_variant_property ('André', 'basetype')
 select sql_variant_property ('20/06/2021', 'basetype')
 -----------------------------------------------
 Convertendo e visualizando o tipo
@@ -52,6 +52,7 @@ select cast ('20/06/2021' as date)
 select sql_variant_property (cast ('20/06/2021' as date), 'basetype')
 select cast ('20/06/2021' as datetime)
 select sql_variant_property (cast ('20/06/2021' as datetime), 'basetype')
+
 select 'O preço do pastel é R$ ' + cast (30.99 as varchar(50))
 select cast ('20/06/2021' as datetime) + 1
 -----------------------------------------------
@@ -68,6 +69,7 @@ select format (cast ('21/03/2021' as datetime), 'dddd')
 select format (cast ('21/03/2021' as datetime), 'MM')
 select format (cast ('21/03/2021' as datetime), 'MMM')
 select format (cast ('21/03/2021' as datetime), 'MMMM')
+
 select 'A data de validede do produto é: ' + format ( cast ('17/04/2022' as datetime), 'dd/MMM/yyy')
 -----------------------------------------------
 Funções de Arredondamento
@@ -76,3 +78,87 @@ select round (18.739130, 2, 1) -- seleciona quantas casas decimais e ignora as r
 select floor (18.739130)       -- arredonda para baixo sem casas decimais
 select ceiling (18.739130)     -- arredonda para cima sem casas decimais
 -----------------------------------------------
+Declarando uma variavel
+declare @variavel tipo
+set @variavel = valor
+
+declare @idade int
+set @idade = 30
+select @idade as Idade
+
+declare @preco float
+set @preco = 10.89
+select @preco as Preço
+
+declare @nome varchar (30)
+set @nome = 'André'
+select @nome as Nome
+
+declare @date date
+set @date = '01/02/2024'
+select @date as Data
+
+Outra opção
+declare
+	@idade int = 10,
+	@preco float = 10.89,
+	@nome varchar (30) = 'André',
+	@data date = '01/02/2024'
+select
+	@idade as Idade,
+	@preco as Preço,
+	@nome as Nome,
+	@data as Data
+
+declare
+	@quantidade int = 100,
+	@preco float = 89.99
+
+select @quantidade * @preco as Faturamento
+-----------------------------------------------
+Exemplos
+/*
+Aplique um desconto de 10% em todos os preços dos produtos.
+Sua consulta final deve conter as colunas ProductKey, ProductName, UnitPrice 
+e Preço com Desconto.
+*/
+
+declare @desconto float = 0.10
+
+select
+	ProductKey as 'ID',
+	ProductName as 'Nome do produto',
+	UnitPrice as 'Preço unitario',
+	UnitPrice * (1 - @desconto) as 'Preço com desconto'
+from
+	DimProduct
+
+/*
+Crie uma variavel de data para melhorar a consulta abaixo.
+*/
+declare @varData datetime = '01/01/1980'
+
+select 
+	FirstName as 'Nome',
+	LastName as 'Sobrenome',
+	BirthDate as 'Nascimento',
+	'Cliente' as 'Tipo'
+from	
+	DimCustomer
+where 
+	BirthDate >= @varData
+
+union
+
+select 
+	FirstName as 'Nome',
+	LastName as 'Sobrenome',
+	BirthDate as 'Nascimento',
+	'Funcionario' as 'Tipo'
+from	
+	DimEmployee
+where 
+	BirthDate >= @varData
+order by 
+	Nascimento
+
