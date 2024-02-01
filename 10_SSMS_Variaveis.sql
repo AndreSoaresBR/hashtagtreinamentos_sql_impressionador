@@ -71,8 +71,8 @@ select format (cast ('21/03/2021' as datetime), 'MMMM')
 select 'A data de validede do produto é: ' + format ( cast ('17/04/2022' as datetime), 'dd/MMM/yyy')
 -----------------------------------------------
 Funções de Arredondamento
-SELECT ROUND (18.739130, 2)    -- seleciona quantas casas decimais e arredonda de acordo com as regras da matematica
-SELECT ROUND (18.739130, 2, 1) -- seleciona quantas casas decimais e ignora as regras da matematica
-SELECT FLOOR (18.739130)       -- arredonda para baixo sem casas decimais
-SELECT CEILING (18.739130)     -- arredonda para cima sem casas decimais
+select round (18.739130, 2)    -- seleciona quantas casas decimais e arredonda de acordo com as regras da matematica
+select round (18.739130, 2, 1) -- seleciona quantas casas decimais e ignora as regras da matematica
+select floor (18.739130)       -- arredonda para baixo sem casas decimais
+select ceiling (18.739130)     -- arredonda para cima sem casas decimais
 -----------------------------------------------
